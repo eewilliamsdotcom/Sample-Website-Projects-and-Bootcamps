@@ -1,0 +1,208 @@
+// NOTE: This document has been upgraded from static HTML to a scalable Next.js (App Router) architecture.
+// It includes:
+// - Premium case-study modal system with charts
+// - Lead capture (Email + WhatsApp CTA)
+// - Executive recruitment optimization
+// - Enterprise-ready component structure
+
+// ================================
+// FILE: app/page.tsx
+// ================================
+
+'use client'
+
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { FaWhatsapp, FaEnvelope } from 'react-icons/fa'
+
+const revenueData = [
+  { quarter: 'Q2', value: 2.11 },
+  { quarter: 'Q3', value: 3.4 },
+  { quarter: 'Q4', value: 4.22 },
+]
+
+export default function Home() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <main className="min-h-screen bg-[#020617] text-slate-100 font-sans">
+
+      {/* HERO */}
+      <section className="max-w-7xl mx-auto px-6 pt-32 pb-24">
+        <h1 className="text-6xl md:text-7xl font-black leading-tight">
+          Strategic Operations & IT<br />
+          <span className="text-blue-500">Executive Portfolio</span>
+        </h1>
+        <p className="mt-6 text-xl text-slate-400 max-w-2xl">
+          Executive-grade evidence of revenue growth, systems optimization, and governance-aligned leadership.
+        </p>
+
+        <div className="flex flex-wrap gap-4 mt-10">
+          <button onClick={() => setOpen(true)} className="px-8 py-4 bg-blue-600 rounded-xl font-bold">
+            View Case Study
+          </button>
+          <a href="/Emmanuel_Williams_Executive_CV.pdf" className="px-8 py-4 border border-white/20 rounded-xl font-bold">
+            Download CV
+          </a>
+        </div>
+      </section>
+
+      {/* LEAD CAPTURE */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="bg-slate-900/60 border border-white/10 rounded-3xl p-10 grid md:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-3xl font-bold">Engage for Executive Roles</h2>
+            <p className="text-slate-400 mt-4">
+              Suitable for board advisory, consulting retainers, operations leadership, and transformation mandates.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <a href="mailto:emmanuel@example.com" className="flex items-center gap-3 px-6 py-4 bg-white text-black rounded-xl font-bold">
+              <FaEnvelope /> Email Inquiry
+            </a>
+            <a href="https://wa.me/234XXXXXXXXXX" className="flex items-center gap-3 px-6 py-4 bg-emerald-600 rounded-xl font-bold">
+              <FaWhatsapp /> WhatsApp Direct
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CASE STUDY MODAL */}
+      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 bg-black/70" />
+        <div className="fixed inset-0 flex items-center justify-center p-6">
+          <Dialog.Panel className="bg-slate-900 rounded-3xl max-w-3xl w-full p-10 border border-white/10">
+            <Dialog.Title className="text-2xl font-bold mb-6">Revenue Acceleration Case Study</Dialog.Title>
+
+            <p className="text-slate-400 mb-8">
+              Business restructuring and pricing optimization led to a sustained 40%+ revenue increase.
+            </p>
+
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={revenueData}>
+                  <XAxis dataKey="quarter" stroke="#94a3b8" />
+                  <YAxis stroke="#94a3b8" />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            <button onClick={() => setOpen(false)} className="mt-10 px-6 py-3 border border-white/20 rounded-xl">
+              Close
+            </button>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-center border-t border-white/10">
+        <p className="text-xs uppercase tracking-widest text-slate-500">
+          Emmanuel Williams • Board • Consulting • Executive Operations
+        </p>
+      </footer>
+    </main>
+  )
+}
+
+// ================================
+// DEPLOYMENT GUIDE (VERCEL + CUSTOM DOMAIN)
+// ================================
+
+// 1. PROJECT STRUCTURE (REQUIRED)
+//
+// /app
+//   page.tsx   (this file)
+// /public
+//   Emmanuel_Williams_Executive_CV.pdf
+// /package.json
+// /next.config.js
+// /vercel.json
+
+// ================================
+// FILE: package.json
+// ================================
+/*
+{
+  "name": "emmanuel-williams-executive-portfolio",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@headlessui/react": "^1.7.18",
+    "recharts": "^2.10.3",
+    "react-icons": "^5.0.1"
+  }
+}
+*/
+
+// ================================
+// FILE: next.config.js
+// ================================
+/*
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  output: 'standalone'
+}
+
+module.exports = nextConfig
+*/
+
+// ================================
+// FILE: vercel.json
+// ================================
+/*
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "cleanUrls": true
+}
+*/
+
+// ================================
+// VERCEL DEPLOYMENT STEPS
+// ================================
+// 1. Push this project to GitHub (recommended private repo)
+// 2. Go to https://vercel.com/new
+// 3. Import the repository
+// 4. Framework auto-detected: Next.js
+// 5. Click Deploy
+
+// ================================
+// CUSTOM DOMAIN SETUP
+// ================================
+// Example domain: emmanuelwilliams.com
+//
+// In Vercel Dashboard:
+// - Go to Project → Settings → Domains
+// - Add domain (emmanuelwilliams.com)
+//
+// At your domain registrar:
+// - Add A Record:
+//   Host: @
+//   Value: 76.76.21.21
+//
+// - Add CNAME:
+//   Host: www
+//   Value: cname.vercel-dns.com
+//
+// SSL is automatically provisioned by Vercel
+
+// ================================
+// EXECUTIVE BEST PRACTICE
+// ================================
+// - Use a custom domain (no .vercel.app for board roles)
+// - Keep repo private
+// - Enable Vercel Analytics
+// - Add password protection if sharing with boards
+
