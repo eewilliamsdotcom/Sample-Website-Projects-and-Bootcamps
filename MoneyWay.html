@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MoneyWay — Know where every naira goes</title>
+<meta name="description" content="MoneyWay helps you track income and expenses, grow savings and plan investments with a free budget calculator and expert financial advisors.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f7f6;--card:#fff;--ink:#0b1b2b;--mute:#5b6b78;--line:#dde5e2;--green:#12994a;--blue:#1e6fb8;--red:#e5484d;--deep:#07151f}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07151f;--card:#0e2230;--ink:#e8f1ee;--mute:#8fa3ae;--line:#1b3342;--green:#3ddc84;--blue:#5aa9f0;--red:#ff6b70}}
+:root[data-theme="dark"]{--bg:#07151f;--card:#0e2230;--ink:#e8f1ee;--mute:#8fa3ae;--line:#1b3342;--green:#3ddc84;--blue:#5aa9f0;--red:#ff6b70}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Sora,"Segoe UI",system-ui,sans-serif;line-height:1.12;margin:0;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font:700 20px Sora,sans-serif}.logo svg{width:34px;height:34px}.logo b{color:var(--green)}
+.nav nav{display:flex;gap:26px;font-size:14px;color:var(--mute)}.nav nav a:hover{color:var(--ink)}
+.btn{display:inline-block;padding:13px 24px;border-radius:12px;background:var(--green);color:#04170c;font:700 15px "DM Sans",sans-serif;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}.btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.hero{background:radial-gradient(800px 420px at 85% 0,rgba(61,220,132,.28),transparent 60%),radial-gradient(600px 400px at 0 100%,rgba(30,111,184,.4),transparent 60%),var(--deep);color:#fff;padding:90px 0}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,68px)}.hero p{color:#aebfc9;font-size:18px;max-width:30em;margin:22px 0 32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:28px;backdrop-filter:blur(10px)}
+.glass small{color:#8fa3ae}.glass .big{font:700 40px Sora,sans-serif;margin:4px 0 18px;word-break:break-word}
+.bar{height:10px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3ddc84,#5aa9f0);transition:width .5s}
+.row{display:flex;justify-content:space-between;margin-top:14px;font-size:14px}
+section{padding:96px 0}.head{max-width:600px;margin-bottom:44px}.head h2{font-size:clamp(28px,4vw,42px)}.head p{color:var(--mute);margin:12px 0 0}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.card h3{font-size:21px;margin-bottom:14px}.card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;color:var(--mute);font-size:15px}
+.card li:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:10px}
+.card.accent{border-top:4px solid var(--green)}.card.accent.b{border-top-color:var(--blue)}.card.accent.r{border-top-color:#e5a03d}
+.band{background:var(--card);border-block:1px solid var(--line)}
+.calc{background:var(--bg);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+.sum{display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--deep);color:#fff}
+.sum div{padding:26px 28px}.sum small{color:#8fa3ae;display:block}.sum b{font:700 28px Sora,sans-serif;word-break:break-word}
+.sum .inc b{color:#3ddc84}.sum .exp b{color:#ff8a8e}.sum .pct{font-size:13px;color:#8fa3ae}
+.add{display:grid;grid-template-columns:110px 1fr 160px auto;gap:10px;padding:20px 24px;border-bottom:1px solid var(--line)}
+input,select,textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);border-color:transparent}
+.err{color:var(--red);font-size:14px;padding:0 24px;min-height:0}.err:not(:empty){padding-top:10px}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:24px}
+.lists h3{font-size:16px;margin-bottom:10px}.lists .i h3{color:var(--green)}.lists .e h3{color:var(--red)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line)}
+.item span:first-child{flex:1;overflow-wrap:anywhere}.item em{font-style:normal;font-size:12px;background:color-mix(in srgb,var(--red) 16%,transparent);color:var(--red);padding:2px 8px;border-radius:7px}
+.item button{border:0;background:none;color:var(--mute);font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;border-radius:8px}.item button:hover{color:var(--red)}
+.empty{color:var(--mute);font-size:14px;padding:14px 4px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.why div{padding:26px;border:1px solid var(--line);border-radius:20px;background:var(--bg)}.why h3{font-size:18px;margin-bottom:8px}.why p{margin:0;color:var(--mute);font-size:15px}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+blockquote{margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:20px}blockquote p{margin:0;font-size:16px}
+blockquote cite{font-style:normal;font-weight:700;font-size:14px}blockquote cite span{display:block;font-weight:400;color:var(--mute)}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.contact dl{display:grid;gap:16px;margin:26px 0 0}.contact dt{font-weight:700}.contact dd{margin:0;color:var(--mute)}
+form{display:grid;gap:12px}
+footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mute);font-size:14px}.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+@media(max-width:820px){.nav nav{display:none}.hero .wrap,.contact,.lists{grid-template-columns:1fr}.sum{grid-template-columns:1fr}.add{grid-template-columns:90px 1fr}.add input[type=number],.add .btn{grid-column:span 1}section{padding:64px 0}.hero{padding:60px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#top" aria-label="MoneyWay home"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#12994a" stroke-width="3"/><path d="M9 12l5 17 6-12 6 12 5-17" fill="none" stroke="#1e6fb8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Money<b>Way</b></a>
+<nav><a href="#services">Services</a><a href="#calculator">Calculator</a><a href="#why">Why us</a><a href="#clients">Clients</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#calculator">Budget calculator</a></div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<div><h1>Know where every naira goes.</h1>
+<p>Monitor your money on the go. Track what comes in, see what goes out, and get a clear view of your month in under five minutes.</p>
+<div class="cta"><a class="btn" href="#calculator">Budget your money</a><a class="btn alt" href="#services">Our services</a></div></div>
+<div class="glass" aria-live="polite"><small id="hm">This month</small><div class="big" id="hb">₦0</div>
+<div class="bar"><i id="hbar"></i></div>
+<div class="row"><span>Income <b id="hi">₦0</b></span><span>Spent <b id="he">₦0</b></span></div></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+<div class="head"><h2>Financial services built around your goals</h2><p>From everyday budgeting to long-term planning, one team handles it all.</p></div>
+<div class="services">
+<div class="card accent"><h3>Accounting</h3><ul><li>Outsourced accounting</li><li>Compilations</li><li>Income &amp; expense tracking</li></ul></div>
+<div class="card accent b"><h3>Tax services</h3><ul><li>Individual tax services</li><li>Corporate &amp; partnership tax</li><li>Estate &amp; trust tax</li></ul></div>
+<div class="card accent r"><h3>Financial advisory</h3><ul><li>Investment offers</li><li>Financial consultations</li><li>Mergers &amp; acquisitions</li><li>Financial crisis support</li></ul></div>
+</div></div></section>
+
+<section id="calculator" class="band"><div class="wrap">
+<div class="head"><h2>Free budget calculator</h2><p>Add your income and expenses. Your data stays in this browser and is saved automatically.</p></div>
+<div class="calc">
+<div class="sum"><div><small>Available budget in <span id="mo"></span></small><b id="bv">₦0</b></div><div class="inc"><small>Income</small><b id="bi">₦0</b></div><div class="exp"><small>Expenses</small><b id="be">₦0</b><div class="pct" id="bp">0% of income</div></div></div>
+<form class="add" id="af" novalidate>
+<select id="ty" aria-label="Type"><option value="inc">Income</option><option value="exp">Expense</option></select>
+<input id="de" type="text" maxlength="60" placeholder="Description, e.g. Salary" aria-label="Description" autocomplete="off">
+<input id="va" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Amount" aria-label="Amount">
+<button class="btn" type="submit">Add</button></form>
+<div class="err" id="er" role="alert"></div>
+<div class="lists"><div class="i"><h3>Income</h3><div id="li"></div></div><div class="e"><h3>Expenses</h3><div id="le"></div></div></div>
+</div></div></section>
+
+<section id="why"><div class="wrap">
+<div class="head"><h2>Why choose MoneyWay</h2><p>Reliable, accurate and always available when you need us.</p></div>
+<div class="why">
+<div><h3>Always on time</h3><p>Deadlines met, every time.</p></div><div><h3>Hard working</h3><p>Your finances get our full attention.</p></div><div><h3>24/7 availability</h3><p>Dedicated staff ready to answer your needs.</p></div>
+<div><h3>Maximum profitability</h3><p>Plans designed to make your money work harder.</p></div><div><h3>Classified transactions</h3><p>Your records stay private and secure.</p></div><div><h3>Always accurate</h3><p>Careful record keeping you can trust.</p></div>
+</div></div></section>
+
+<section id="clients" class="band"><div class="wrap">
+<div class="head"><h2>What our clients say</h2></div>
+<div class="quotes">
+<div class="card"><blockquote><p>Everyone in Nigeria knows how easy Alisware comes and goes for corp members. I wish I knew about MoneyWay Expense Tracker in the first four months of the service year.</p><cite>Jane Nwabueze, 24<span>Corp member</span></cite></blockquote></div>
+<div class="card"><blockquote><p>I was earning about $1,000 a month with no savings to fall back on. I randomly stumbled on MoneyWay Budget Calculator and I realized what I have been wasting my money on.</p><cite>Tunwa Adebayo, 32<span>Fresh freelancer</span></cite></blockquote></div>
+<div class="card"><blockquote><p>I have been a tailor for five years and four years I always exceeded my budget. I heard of MoneyWay Budget Calculator and decided to give it a try, and my expenditure no longer exceeds my budget.</p><cite>Ope Vivian, 29<span>Tailor</span></cite></blockquote></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap contact">
+<div><h2 style="font-size:clamp(28px,4vw,42px)">Request a free quote</h2><p style="color:var(--mute)">Tell us what you need and we will get back to you quickly.</p>
+<dl><div><dt>Phone</dt><dd>+19106 268 5255 · +19208 388 5366</dd></div><div><dt>Email</dt><dd>contact@example.com</dd></div><div><dt>Address</dt><dd>123 Fifth Avenue, New York, NY 10160, USA</dd></div></dl></div>
+<form id="qf"><input name="n" placeholder="Your name" required aria-label="Your name"><input name="e" type="email" placeholder="Email address" required aria-label="Email"><textarea name="m" rows="5" placeholder="How can we help?" required aria-label="Message"></textarea><button class="btn" type="submit">Get a quote</button></form>
+</div></section>
+</main>
+<footer><div class="wrap foot"><span>© <span id="y"></span> MoneyWay. All rights reserved.</span><span>Facebook · Twitter · Instagram · WhatsApp · LinkedIn</span></div></footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},cur='₦',KEY='moneyway.items.v1',items=[];
+var fmt=new Intl.NumberFormat('en-NG',{minimumFractionDigits:2,maximumFractionDigits:2});
+function money(n){return cur+fmt.format(n)}
+function load(){try{var r=localStorage.getItem(KEY);items=r?JSON.parse(r):[];if(!Array.isArray(items))items=[]}catch(e){items=[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}}
+function sum(t){return items.filter(function(x){return x.t===t}).reduce(function(a,x){return a+x.v},0)}
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function list(t,el,inc){var h='',rows=items.filter(function(x){return x.t===t});
+ rows.forEach(function(x){h+='<div class="item"><span>'+esc(x.d)+'</span><b>'+(t==='inc'?'+ ':'- ')+money(x.v)+'</b>'+(t==='exp'&&inc>0?'<em>'+Math.round(x.v/inc*100)+'%</em>':'')+'<button type="button" data-id="'+x.id+'" aria-label="Delete '+esc(x.d)+'">×</button></div>'});
+ el.innerHTML=h||'<div class="empty">Nothing added yet.</div>'}
+function render(){var i=sum('inc'),e=sum('exp'),b=i-e,p=i>0?Math.round(e/i*100):(e>0?100:0);
+ $('bi').textContent='+ '+money(i);$('be').textContent='- '+money(e);$('bv').textContent=(b<0?'- ':'+ ')+money(Math.abs(b));$('bp').textContent=p+'% of income';
+ $('hb').textContent=(b<0?'-':'')+money(Math.abs(b));$('hi').textContent=money(i);$('he').textContent=money(e);$('hbar').style.width=Math.min(p,100)+'%';
+ list('inc',$('li'),i);list('exp',$('le'),i)}
+$('af').addEventListener('submit',function(ev){ev.preventDefault();
+ var d=$('de').value.trim(),v=parseFloat($('va').value);
+ if(!d){$('er').textContent='Please add a description.';$('de').focus();return}
+ if(!isFinite(v)||v<=0){$('er').textContent='Enter an amount greater than zero.';$('va').focus();return}
+ $('er').textContent='';items.push({id:Date.now()+Math.random(),t:$('ty').value,d:d,v:Math.round(v*100)/100});
+ save();render();$('de').value='';$('va').value='';$('de').focus()});
+$('calculator').addEventListener('click',function(ev){var b=ev.target.closest('button[data-id]');if(!b)return;
+ items=items.filter(function(x){return String(x.id)!==b.getAttribute('data-id')});save();render()});
+$('qf').addEventListener('submit',function(ev){ev.preventDefault();var f=new FormData(this);
+ location.href='mailto:contact@example.com?subject='+encodeURIComponent('Quote request from '+f.get('n'))+'&body='+encodeURIComponent(f.get('m')+'\n\n'+f.get('n')+' - '+f.get('e'))});
+var m=new Date();$('mo').textContent=m.toLocaleString('en',{month:'long'});$('hm').textContent=m.toLocaleString('en',{month:'long'})+' at a glance';$('y').textContent=m.getFullYear();
+load();render();
+})();
+</script>
+</body>
+</html>
