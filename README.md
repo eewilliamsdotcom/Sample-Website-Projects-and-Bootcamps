@@ -15,9 +15,20 @@ This repository documents three web projects built to practise and demonstrate f
 |---|---------|-----------|---------|
 | 1 | Money Way Finance App | 100% | Original budget app audited, bugs fixed, and rebuilt as a premium finance website |
 | 2 | Upsurge Consulting Site | 100% | Site rebuilt from an incomplete WordPress backup as a modern consulting website |
-| 3 | Emmanuel Williams Portfolio | 75% | Personal portfolio in progress; live deployment needs verification |
+| 3 | Emmanuel Williams Portfolio | 75% | Personal portfolio in progress; deployment to be verified |
 
 The two completed projects follow the same pattern: start from an existing or partially broken codebase, identify the faults, and deliver a cleaner, faster, more polished result using plain HTML, CSS and JavaScript.
+
+---
+
+## Repository Contents
+
+| File | Description |
+|------|-------------|
+| `MoneyWay.html` | Money Way finance site with working budget calculator (Project 1) |
+| `UIC.html` | Upsurge consulting site (Project 2) |
+| `ops&HR.html` | Operations and HR page |
+| `README.md` | This project report |
 
 ---
 
@@ -94,16 +105,19 @@ A new single-page site built from the recovered brand assets (UIC logo and team 
 ## 4. Project 3: Emmanuel Williams Portfolio
 
 **Status:** about 75% complete.
-**Intended live URL:** https://eewilliams.netlify.app/
+**Live site:** https://eewilliams.vercel.app (listed as the repository website)
 
-### Deployment check
-When this report was updated (4 October 2026), the URL above returned an **HTTP 404**. Possible causes include a paused or deleted Netlify site, a changed subdomain, or a missing `index.html` in the published folder. This should be resolved before the project is presented.
+### Deployment note
+An earlier Netlify address (`eewilliams.netlify.app`) returned an **HTTP 404** when checked on 4 October 2026, and the Vercel address could not be independently verified when this report was updated. Confirm that the Vercel site loads, and retire or redirect the old Netlify address.
 
 ### Report details (to be completed)
 - **Purpose and audience:** _add_
 - **Pages and features built so far:** _add_
 - **Technologies used:** _add_
 - **Remaining work to reach 100%:** _add_
+
+### Additional file: `ops&HR.html`
+An operations and HR page is also included in the repository. Add a one-line description of its purpose here.
 
 ---
 
@@ -122,7 +136,7 @@ Projects 1 and 2 use plain HTML, CSS and JavaScript only. React and Node.js are 
 
 ## 7. Recommendations and Next Steps
 
-- Fix or redeploy the Netlify site and finish Project 3
+- Verify the Vercel deployment, remove the old Netlify link, and finish Project 3
 - Replace placeholder content on the Upsurge site with real business details
 - Connect both contact forms to a form service (for example Netlify Forms)
 - Add screenshots and live demo links to this README
@@ -131,12 +145,12 @@ Projects 1 and 2 use plain HTML, CSS and JavaScript only. React and Node.js are 
 ## 8. Getting Started
 
 ```bash
-git clone https://github.com/<your-username>/Sample-Website-Projects-and-Bootcamps.git
+git clone https://github.com/eewilliamsdotcom/Sample-Website-Projects-and-Bootcamps.git
 cd Sample-Website-Projects-and-Bootcamps
-npx serve <project-folder>
+npx serve .
 ```
 
-Each static project also opens directly by double-clicking its `index.html`.
+Each page is a self-contained HTML file, so you can also open `MoneyWay.html` or `UIC.html` directly in a browser. No build step is required.
 
 ## 9. License
 
